@@ -10,6 +10,81 @@
     
 </body>
 <script>
-    
+    class Summary {
+        constructor(
+            speed,
+            speedRank,
+            stamina,
+            staminaRank,
+            power,
+            powerRank,
+            guts,
+            gutsRank,
+            intelligence,
+            intelligenceRank,
+            selectedStatus,
+            factor
+        ) {
+            this.speed = speed; // スピード
+            this.stamina = stamina;
+            this.power = power;
+            this.guts = guts;
+            this.intelligence = intelligence;
+            this.speedRank = speedRank;
+            this.staminaRank = staminaRank;
+            this.powerRank = powerRank;
+            this.gutsRank = gutsRank;
+            this.intelligenceRank = intelligenceRank;
+            this.selectedStatus = selectedStatus;
+            this.factor = factor;
+        }
+
+        getSelectedStatusValue() {
+            switch (this.selectedStatus) {
+                case 'speed':
+                    return this.speed;
+                case 'stamina':
+                    return this.stamina;
+                case 'power':
+                    return this.power;
+                case 'guts':
+                    return this.guts;
+                case 'intelligence':
+                    return this.intelligence;
+            }
+        }
+        getSelectedStatusRank() {
+            switch (this.selectedStatus) {
+                case 'speed':
+                    return this.speedRank;
+                case 'stamina':
+                    return this.staminaRank;
+                case 'power':
+                    return this.powerRank;
+                case 'guts':
+                    return this.gutsRank;
+                case 'intelligence':
+                    return this.intelligenceRank;
+            }
+        }
+    }
+
+    let s = new Summary(
+        2000,
+        'SS',
+        43,
+        'A',
+        43,
+        'A',
+        43,
+        'A',
+        43,
+        'A',
+        'speed',
+        3
+    );
+
+    console.log(s.getSelectedStatusValue());
+    console.log(s.getSelectedStatusRank());
 </script>
 </html>
