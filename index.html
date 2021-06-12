@@ -165,6 +165,7 @@
         <canvas id="myChart" width="400" height="400"></canvas>
     </div>
 
+
 </div>
 </body>
 <script>
@@ -243,7 +244,7 @@
             });
         }
 
-        test() {
+        test(rank) {
             const rankFactorList = this.summaries.map(function (summary) {
                 return {
                     rank: summary.getSelectedStatusRank(),
@@ -251,28 +252,31 @@
                 }
             })
 
-            const c = rankFactorList.filter(function (item) { if (item.rank === 'C') return item })
-            const b = rankFactorList.filter(function (item) { if (item.rank === 'B') return item })
-            const d = rankFactorList.filter(function (item) { if (item.rank === 'D') return item })
+            const filteredList = rankFactorList.filter(function (item) {
+                if (item.rank === rank) return item;
+            });
 
-            const cObject = {
+            const factorCount = {
                 one: 0,
                 two: 0,
                 three: 0,
             }
-            c.forEach(function (item) {
+
+            filteredList.forEach(function (item) {
                 switch (item.factor) {
                     case "1":
-                        cObject.one++;
+                        factorCount.one++;
                         break;
                     case "2":
-                        cObject.two++;
+                        factorCount.two++;
                         break;
                     case "3":
-                        cObject.three++;
+                        factorCount.three++;
                         break;
                 }
             })
+
+            console.log(rankFactorList, filteredList, factorCount);
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
@@ -281,7 +285,7 @@
                     labels: ['★', '★★', '★★★'],
                     datasets: [{
                         label: '因子比率',
-                        data: [cObject.one, cObject.two, cObject.three],
+                        data: [factorCount.one, factorCount.two, factorCount.three],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -304,7 +308,7 @@
                 }
             });
 
-            console.log(c, cObject);
+
         }
 
         display() {
@@ -357,7 +361,7 @@
         });
 
         summariesCollection.display();
-        summariesCollection.test();
+        summariesCollection.test('B');
     }
 
 
