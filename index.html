@@ -5,8 +5,254 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
-    
+<div class="container">
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="speed" class="form-label">スピード</label>
+            <input type="number" class="form-control" id="speed" placeholder="入力">
+        </div>
+        <div class="col">
+            <label for="speedRank" class="form-label">スピードRank</label>
+            <select class="form-control" id="speedRank">
+                <option value="">--</option>
+                <option value="SS">SS</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="stamina" class="form-label">スタミナ</label>
+            <input type="number" class="form-control" id="stamina" placeholder="">
+        </div>
+        <div class="col">
+            <label for="staminaRank" class="form-label">スタミナRank</label>
+            <select class="form-control" id="staminaRank">
+                <option value="">--</option>
+                <option value="SS">SS</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="power" class="form-label">パワー</label>
+            <input type="number" class="form-control" id="power" placeholder="">
+        </div>
+        <div class="col">
+            <label for="powerRank" class="form-label">パワーRank</label>
+            <select class="form-control" id="powerRank">
+                <option value="">--</option>
+                <option value="SS">SS</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="guts" class="form-label">根性</label>
+            <input type="number" class="form-control" id="guts" placeholder="">
+        </div>
+        <div class="col">
+            <label for="gutsRank" class="form-label">根性Rank</label>
+            <select class="form-control" id="gutsRank">
+                <option value="">--</option>
+                <option value="SS">SS</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="intelli" class="form-label">賢さ</label>
+            <input type="number" class="form-control" id="intelli" placeholder="">
+        </div>
+        <div class="col">
+            <label for="intelliRank" class="form-label">賢さRank</label>
+            <select class="form-control" id="intelliRank">
+                <option value="">--</option>
+                <option value="SS">SS</option>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="selectedStatus" class="form-label">選択されたステータス</label>
+            <select class="form-control" id="selectedStatus">
+                <option value="">--</option>
+                <option value="speed">スピード</option>
+                <option value="stamina">スタミナ</option>
+                <option value="power">パワー</option>
+                <option value="guts">根性</option>
+                <option value="intelli">賢さ</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row align-items-end">
+        <div class="col">
+            <label for="factor" class="form-label">因子</label>
+            <select class="form-control" id="selectedStatus">
+                <option value="">--</option>
+                <option value="factor1">☆</option>
+                <option value="factor2">☆☆</option>
+                <option value="factor3">☆☆☆</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row align-items-end">
+        <div class="col">
+            <button id="create" type="button" class="btn btn-primary">追加</button>
+        </div>
+    </div>
+
+</div> 
+<div>
+    <div id=""></div>
+</div>
 </body>
+<script>
+    class Summary {
+        constructor(
+            speed,
+            stamina,
+            power,
+            guts,
+            intelli,
+            speedRank,
+            staminaRank,
+            powerRank,
+            gutsRank,
+            intelliRank,
+            selectedStatus,
+            factor
+        ) {
+            this.speed = speed;
+            this.stamina = stamina;
+            this.power = power;
+            this.guts = guts;
+            this.intelli = intelli;
+            this.speedRank = speedRank;
+            this.staminaRank = staminaRank;
+            this.powerRank = powerRank;
+            this.gutsRank = gutsRank;
+            this.intelliRank = intelliRank;
+            this.selectedStatus = selectedStatus;
+            this.factor = factor;
+        }
+
+        getSelectedStatusValue() {
+            switch (this.selectedStatus) {
+                case 'speed':
+                    return this.speed;
+                case 'stamina':
+                    return this.stamina;
+                case 'power':
+                    return this.power; 
+                case 'guts':
+                    return this.guts;                        
+                case 'intelli':
+                    return this.intelli;   
+            }
+        }
+
+        getSelectedStatusRank() {
+            switch (this.selectedStatus) {
+                case 'speed':
+                    return this.speedRank;
+                case 'stamina':
+                    return this.staminaRank;
+                case 'power':
+                    return this.powerRank; 
+                case 'guts':
+                    return this.gutsRank;                        
+                case 'intelli':
+                    return this.intelliRank;   
+            }
+        }
+    }
+
+    class SummariesCollection {
+        constructor(summaries = []) {
+            this.summaries = summaries
+        }
+
+        append(summary) {
+            this.summaries.push(summary)
+        }
+
+        getBySelectedStatus(selectedStatus) {
+            return this.summaries.filter(function (summary) {
+                if (summary.selectedStatus === selectedStatus) return summary;
+            });
+        }
+    }
+
+    const summariesCollection = new SummariesCollection();
+
+    $('#create').click(function () {
+        const speed = $('#speed').val();
+        const stamina = $('#stamina').val();
+        const power = $('#power').val();
+        const guts = $('#guts').val();
+        const intelli = $('#intelli').val();
+        const speedRank = $('#speedRank').val();
+        const staminaRank = $('#staminaRank').val();
+        const powerRank = $('#powerRank').val();
+        const gutsRank = $('#gutsRank').val();
+        const intelliRank = $('#intelliRank').val();
+        const selectedStatus = $('#selectedStatus').val();
+        const factor = $('#factor').val();
+
+        const summary = new Summary(
+            speed,
+            stamina,
+            power,
+            guts,
+            intelli,
+            speedRank,
+            staminaRank,
+            powerRank,
+            gutsRank,
+            intelliRank,
+            selectedStatus,
+            factor
+        );
+
+        summariesCollection.append(summary);
+
+        console.log(summariesCollection)
+        localStorage.setItem('summaries', JSON.stringify(summariesCollection));
+    })
+
+    
+</script>
 </html>
