@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
 </head>
 <body>
 <div class="container">
@@ -119,11 +120,11 @@
     <div class="row align-items-end">
         <div class="col">
             <label for="factor" class="form-label">因子</label>
-            <select class="form-control" id="selectedStatus">
+            <select class="form-control" id="factor">
                 <option value="">--</option>
-                <option value="factor1">☆</option>
-                <option value="factor2">☆☆</option>
-                <option value="factor3">☆☆☆</option>
+                <option value="1">☆</option>
+                <option value="2">☆☆</option>
+                <option value="3">☆☆☆</option>
             </select>
         </div>
     </div>
@@ -134,6 +135,32 @@
         </div>
     </div>
 
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th scope="col">スピ</th>
+                <th scope="col">スピRank</th>
+                <th scope="col">スタ</th>
+                <th scope="col">スタRank</th>
+                <th scope="col">パワ</th>
+                <th scope="col">パワRank</th>
+                <th scope="col">根性</th>
+                <th scope="col">根性Rank</th>
+                <th scope="col">賢さ</th>
+                <th scope="col">賢さRank</th>
+                <th scope="col">青因子</th>
+                <th scope="col">因子Rank</th>
+            </tr>
+        </thead>
+
+        <tbody id="list">
+        </tbody>
+
+    </table>
+    <canvas id="myChart">
+
+    </canvas>
 </div> 
 <div>
     <div id=""></div>
@@ -176,11 +203,11 @@
                 case 'stamina':
                     return this.stamina;
                 case 'power':
-                    return this.power; 
+                    return this.power;
                 case 'guts':
-                    return this.guts;                        
+                    return this.guts;
                 case 'intelli':
-                    return this.intelli;   
+                    return this.intelli;
             }
         }
 
@@ -193,7 +220,7 @@
                 case 'power':
                     return this.powerRank; 
                 case 'guts':
-                    return this.gutsRank;                        
+                    return this.gutsRank;
                 case 'intelli':
                     return this.intelliRank;   
             }
@@ -214,9 +241,125 @@
                 if (summary.selectedStatus === selectedStatus) return summary;
             });
         }
+
+        factorChart(rank) {
+            const rankFactorList = this.summaries.filter(function (summary) {
+                return {
+                    rank: summary.getSelectedStatusRank(),
+                    factor: summary.factor
+                }
+            })
+
+            const filteredList = rankFactorList.filter(function (item) {
+                if (item.rank === rank) return item;
+            });
+
+            const factorCount = {
+                one: 0,
+                two: 0,
+                three: 0
+            }
+
+            filteredList.forEach(function　(item) {
+                switch (item.factor) {
+                    case "1":
+                        factorCount.one++;
+                        break;
+                    case "2":
+                        factorCount.two++;
+                        break;
+                    case "3":
+                        factorCount.three++;
+                        break;
+                }
+            })
+
+            console.log(rankFactorList, filteredList, factorCount);
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['★', '★★', '★★★'],
+                    datasets: [{
+                        label: '因子比率',
+                        data: [factorCount.one, factorCount.two, factorCount.three],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+
+
+        displayList() {
+            $('#list').empty();
+            this.summaries.forEach(function (summary) {
+                $('#list').append(
+                    `
+                    <tr>
+                        <td>${summary.speed}</td>
+                        <td>${summary.speedRank}</td>
+                        <td>${summary.stamina}</td>
+                        <td>${summary.staminaRank}</td>
+                        <td>${summary.power}</td>
+                        <td>${summary.powerRank}</td>
+                        <td>${summary.guts}</td>
+                        <td>${summary.gutsRank}</td>
+                        <td>${summary.intelli}</td>
+                        <td>${summary.intelliRank}</td>
+                        <td>${summary.selectedStatus}</td>
+                        <td>${summary.factor}</td>
+                        
+                    </tr>
+                    `
+                )
+            });
+        }
     }
 
+    let data = localStorage.getItem('summaries');
+    data = JSON.parse(data);
+
     const summariesCollection = new SummariesCollection();
+
+    if(data) {
+        data.summaries.forEach(function(summary){
+            summariesCollection.append(new Summary(
+                summary.speed,
+                summary.stamina,
+                summary.power,
+                summary.guts,
+                summary.intelli,
+                summary.speedRank,
+                summary.staminaRank,
+                summary.powerRank,
+                summary.gutsRank,
+                summary.intelliRank,
+                summary.selectedStatus,
+                summary.factor,
+            ));
+        });
+        summariesCollection.displayList();
+        summariesCollection.factorChart('A');
+    }
 
     $('#create').click(function () {
         const speed = $('#speed').val();
@@ -251,6 +394,8 @@
 
         console.log(summariesCollection)
         localStorage.setItem('summaries', JSON.stringify(summariesCollection));
+
+        summariesCollection.displayList()
     })
 
     
