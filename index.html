@@ -243,7 +243,7 @@
         }
 
         factorChart(rank) {
-            const rankFactorList = this.summaries.filter(function (summary) {
+            const rankFactorList = this.summaries.map(function (summary) {
                 return {
                     rank: summary.getSelectedStatusRank(),
                     factor: summary.factor
@@ -270,6 +270,8 @@
                         break;
                     case "3":
                         factorCount.three++;
+                        break;
+                    default:
                         break;
                 }
             })
