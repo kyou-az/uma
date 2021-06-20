@@ -243,7 +243,7 @@
         }
 
         factorChart(rank) {
-            const rankFactorList = this.summaries.filter(function (summary) {
+            const rankFactorList = this.summaries.map(function (summary) {
                 return {
                     rank: summary.getSelectedStatusRank(),
                     factor: summary.factor
@@ -260,7 +260,7 @@
                 three: 0
             }
 
-            filteredList.forEach(function　(item) {
+            filteredList.forEach(function (item) {
                 switch (item.factor) {
                     case "1":
                         factorCount.one++;
@@ -271,10 +271,11 @@
                     case "3":
                         factorCount.three++;
                         break;
+                    default:
+                        console.log('wqaaaaaaa')
+                        break;
                 }
             })
-
-            console.log(rankFactorList, filteredList, factorCount);
 
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {
@@ -358,7 +359,7 @@
             ));
         });
         summariesCollection.displayList();
-        summariesCollection.factorChart('A');
+        summariesCollection.factorChart('B');
     }
 
     $('#create').click(function () {
