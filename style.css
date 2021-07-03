@@ -1,0 +1,15 @@
+.toggle {
+  display: none;
+}
+
+.show {
+  display: table-row-group;
+}
+
+.display-button {
+  margin-top: 40px;
+  box-shadow: none;
+  border-radius: 5px 5px 0 0;
+  border: 1px solid #2f3640;
+  background-color: #fff;
+}

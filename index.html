@@ -6,138 +6,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+
 </head>
 <body>
 <div class="container">
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="speed" class="form-label">スピード</label>
-            <input type="number" class="form-control" id="speed" placeholder="入力">
+    <details>
+        <summary>入力</summary>
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="speed" class="form-label">スピード</label>
+                <input type="number" class="form-control" id="speed" placeholder="入力">
+            </div>
+            <div class="col">
+                <label for="speedRank" class="form-label">スピードRank</label>
+                <select class="form-control" id="speedRank">
+                    <option value="">--</option>
+                    <option value="SS">SS</option>
+                    <option value="S">S</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
         </div>
-        <div class="col">
-            <label for="speedRank" class="form-label">スピードRank</label>
-            <select class="form-control" id="speedRank">
-                <option value="">--</option>
-                <option value="SS">SS</option>
-                <option value="S">S</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
-        </div>
-    </div>
 
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="stamina" class="form-label">スタミナ</label>
-            <input type="number" class="form-control" id="stamina" placeholder="">
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="stamina" class="form-label">スタミナ</label>
+                <input type="number" class="form-control" id="stamina" placeholder="">
+            </div>
+            <div class="col">
+                <label for="staminaRank" class="form-label">スタミナRank</label>
+                <select class="form-control" id="staminaRank">
+                    <option value="">--</option>
+                    <option value="SS">SS</option>
+                    <option value="S">S</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
         </div>
-        <div class="col">
-            <label for="staminaRank" class="form-label">スタミナRank</label>
-            <select class="form-control" id="staminaRank">
-                <option value="">--</option>
-                <option value="SS">SS</option>
-                <option value="S">S</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="power" class="form-label">パワー</label>
+                <input type="number" class="form-control" id="power" placeholder="">
+            </div>
+            <div class="col">
+                <label for="powerRank" class="form-label">パワーRank</label>
+                <select class="form-control" id="powerRank">
+                    <option value="">--</option>
+                    <option value="SS">SS</option>
+                    <option value="S">S</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="power" class="form-label">パワー</label>
-            <input type="number" class="form-control" id="power" placeholder="">
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="guts" class="form-label">根性</label>
+                <input type="number" class="form-control" id="guts" placeholder="">
+            </div>
+            <div class="col">
+                <label for="gutsRank" class="form-label">根性Rank</label>
+                <select class="form-control" id="gutsRank">
+                    <option value="">--</option>
+                    <option value="SS">SS</option>
+                    <option value="S">S</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
         </div>
-        <div class="col">
-            <label for="powerRank" class="form-label">パワーRank</label>
-            <select class="form-control" id="powerRank">
-                <option value="">--</option>
-                <option value="SS">SS</option>
-                <option value="S">S</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="intelli" class="form-label">賢さ</label>
+                <input type="number" class="form-control" id="intelli" placeholder="">
+            </div>
+            <div class="col">
+                <label for="intelliRank" class="form-label">賢さRank</label>
+                <select class="form-control" id="intelliRank">
+                    <option value="">--</option>
+                    <option value="SS">SS</option>
+                    <option value="S">S</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                </select>
+            </div>
         </div>
-    </div>
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="guts" class="form-label">根性</label>
-            <input type="number" class="form-control" id="guts" placeholder="">
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="selectedStatus" class="form-label">選択されたステータス</label>
+                <select class="form-control" id="selectedStatus">
+                    <option value="">--</option>
+                    <option value="speed">スピード</option>
+                    <option value="stamina">スタミナ</option>
+                    <option value="power">パワー</option>
+                    <option value="guts">根性</option>
+                    <option value="intelli">賢さ</option>
+                </select>
+            </div>
         </div>
-        <div class="col">
-            <label for="gutsRank" class="form-label">根性Rank</label>
-            <select class="form-control" id="gutsRank">
-                <option value="">--</option>
-                <option value="SS">SS</option>
-                <option value="S">S</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
-        </div>
-    </div>
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="intelli" class="form-label">賢さ</label>
-            <input type="number" class="form-control" id="intelli" placeholder="">
-        </div>
-        <div class="col">
-            <label for="intelliRank" class="form-label">賢さRank</label>
-            <select class="form-control" id="intelliRank">
-                <option value="">--</option>
-                <option value="SS">SS</option>
-                <option value="S">S</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-            </select>
-        </div>
-    </div>
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="selectedStatus" class="form-label">選択されたステータス</label>
-            <select class="form-control" id="selectedStatus">
-                <option value="">--</option>
-                <option value="speed">スピード</option>
-                <option value="stamina">スタミナ</option>
-                <option value="power">パワー</option>
-                <option value="guts">根性</option>
-                <option value="intelli">賢さ</option>
-            </select>
-        </div>
-    </div>
 
-    <div class="row align-items-end">
-        <div class="col">
-            <label for="factor" class="form-label">因子</label>
-            <select class="form-control" id="factor">
-                <option value="">--</option>
-                <option value="1">☆</option>
-                <option value="2">☆☆</option>
-                <option value="3">☆☆☆</option>
-            </select>
+        <div class="row align-items-end">
+            <div class="col">
+                <label for="factor" class="form-label">因子</label>
+                <select class="form-control" id="factor">
+                    <option value="">--</option>
+                    <option value="1">☆</option>
+                    <option value="2">☆☆</option>
+                    <option value="3">☆☆☆</option>
+                </select>
+            </div>
         </div>
-    </div>
-
-    <div class="row align-items-end">
-        <div class="col">
-            <button id="create" type="button" class="btn btn-primary">追加</button>
+        <div class="row align-items-end">
+            <div class="col">
+                <button id="create" type="button" class="btn btn-primary">追加</button>
+            </div>
         </div>
-    </div>
+    </details>
 
+        
+    <button class="display-button">表示切り替え</button>
     <table class="table">
-
-        <thead>
+        <thead >
             <tr>
                 <th scope="col">スピ</th>
                 <th scope="col">スピRank</th>
@@ -154,19 +160,44 @@
             </tr>
         </thead>
 
-        <tbody id="list">
+        <tbody id="list" class="toggle">
         </tbody>
 
     </table>
-    <canvas id="myChart">
-
-    </canvas>
-</div> 
-<div>
-    <div id=""></div>
+<div style="display: flex; justify-content: spce-between; flex-wrap: wrap;">
+    <div style="width: 300px;">
+        <h3>SS</h3>
+        <canvas id="myChartSS" style="width: 300px; height: 300px"></canvas>
+    </div>
+    <div style="width: 300px;">
+        <h3>S</h3>
+        <canvas id="myChartS" style="width: 300px; height: 300px"></canvas>
+    </div>
+    <div style="width: 300px;">
+        <h3>A</h3>
+        <canvas id="myChartA" style="width: 300px; height: 300px"></canvas>
+    </div>
+    <div style="width: 300px;">
+        <h3>B</h3>
+        <canvas id="myChartB" style="width: 300px; height: 300px"></canvas>
+    </div>  
+    <div>
+        <h3>選ばれたステータス</h3>
+        <canvas id="selectedFactorChart" style="width: 300px; height: 300px"></canvas>
+    </div>
 </div>
+
 </body>
 <script>
+    $(function(){
+
+        var el = $('.toggle');
+        var btn = $('.display-button');
+
+        btn.on('click', function(){
+            el.toggleClass('show');
+        });
+    });
     class Summary {
         constructor(
             speed,
@@ -236,6 +267,79 @@
             this.summaries.push(summary)
         }
 
+        displaySelectedFactorStatus() {
+            // SummariesからSelectedStatusごとの個数を集計する
+            const filteredSelectedFactor = this.summaries.map(function (summary) {
+                return {
+                    selectedFactor: summary.selectedStatus
+                }
+            })
+
+            const selectedFactorStatus = {
+                speed: 0,
+                stamina: 0,
+                power: 0,
+                guts: 0,
+                intelli: 0
+            }
+
+            filteredSelectedFactor.forEach (function (item) {
+                switch (item.selectedFactor) {
+                    case 'speed':
+                        selectedFactorStatus.speed++;
+                        break;
+                    case 'stamina':
+                        selectedFactorStatus.stamina++;
+                        break;
+                    case 'power':
+                        selectedFactorStatus.power++;
+                        break;
+                    case 'guts':
+                        selectedFactorStatus.guts++;
+                        break;
+                    case 'intelli':
+                        selectedFactorStatus.intelli++;
+                        break;
+                }
+            })
+
+            var ctx = document.getElementById('selectedFactorChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['spe', 'sta', 'pow', 'gut', 'int'],
+                    datasets: [{
+                        label: '因子比率',
+                        data: [selectedFactorStatus.speed, selectedFactorStatus.stamina, selectedFactorStatus.power, selectedFactorStatus.guts, selectedFactorStatus.intelli],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(162, 54, 86, 0.2)',
+                            'rgba(206, 255, 86, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(162, 54, 86, 1)',
+                            'rgba(206, 255, 86, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            // 上記集計結果からグラフを描画する
+        }
+
+
         getBySelectedStatus(selectedStatus) {
             return this.summaries.filter(function (summary) {
                 if (summary.selectedStatus === selectedStatus) return summary;
@@ -254,6 +358,7 @@
                 if (item.rank === rank) return item;
             });
 
+            console.log(filteredList)
             const factorCount = {
                 one: 0,
                 two: 0,
@@ -276,9 +381,7 @@
                 }
             })
 
-            console.log(rankFactorList, filteredList, factorCount);
-
-            var ctx = document.getElementById('myChart').getContext('2d');
+            var ctx = document.getElementById(`myChart${rank}`).getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
@@ -360,7 +463,11 @@
             ));
         });
         summariesCollection.displayList();
+        summariesCollection.factorChart('SS');
+        summariesCollection.factorChart('S');
         summariesCollection.factorChart('A');
+        summariesCollection.factorChart('B');
+        summariesCollection.displaySelectedFactorStatus();
     }
 
     $('#create').click(function () {
@@ -394,7 +501,6 @@
 
         summariesCollection.append(summary);
 
-        console.log(summariesCollection)
         localStorage.setItem('summaries', JSON.stringify(summariesCollection));
 
         summariesCollection.displayList()
