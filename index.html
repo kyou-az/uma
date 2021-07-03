@@ -160,15 +160,28 @@
         </tbody>
     </table>
 
-    <div style="width: 300px">
-        <h3>A</h3>
-        <canvas id="myChartA" width="400" height="400"></canvas>
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+        <div style="width: 300px">
+            <h3>SS</h3>
+            <canvas id="myChartSS" width="400" height="400"></canvas>
+        </div>
+
+        <div style="width: 300px">
+            <h3>S</h3>
+            <canvas id="myChartS" width="400" height="400"></canvas>
+        </div>
+
+        <div style="width: 300px">
+            <h3>A</h3>
+            <canvas id="myChartA" width="400" height="400"></canvas>
+        </div>
+
+        <div style="width: 300px">
+            <h3>B</h3>
+            <canvas id="myChartB" width="400" height="400"></canvas>
+        </div>
     </div>
 
-    <div style="width: 300px">
-        <h3>B</h3>
-        <canvas id="myChartB" width="400" height="400"></canvas>
-    </div>
 
 
 </div>
@@ -249,18 +262,21 @@
             });
         }
 
-        test(rank) {
-            const rankFactorList = this.summaries.map(function (summary) {
+        displayGraph(rank) {
+            // Summariesの一覧を、選択済みのStatusのランクと、因子を持つオブジェクトに変換する。
+            const convertedSummaries = this.summaries.map(function (summary) {
                 return {
-                    rank: summary.getSelectedStatusRank(),
-                    factor: summary.factor
+                    factor: summary.factor,
+                    rank: summary.getSelectedStatusRank()
                 }
             })
 
-            const filteredList = rankFactorList.filter(function (item) {
-                if (item.rank === rank) return item;
-            });
+            // 上記で変換したオブジェクトリストから、集計したいランクだけのリストを抽出する。
+            const filteredList = convertedSummaries.filter(function (item) {
+                if (item.rank === rank) return true;
+            })
 
+            // 抽出したリストから、星の数ごとの個数を集計する。
             const factorCount = {
                 one: 0,
                 two: 0,
@@ -268,26 +284,26 @@
             }
 
             filteredList.forEach(function (item) {
-                switch (item.factor) {
-                    case "1":
-                        factorCount.one++;
-                        break;
-                    case "2":
-                        factorCount.two++;
-                        break;
-                    case "3":
-                        factorCount.three++;
-                        break;
+                if (item.factor === "1") {
+                    factorCount.one++;
+                } else if (item.factor === "2") {
+                    factorCount.two++;
+                } else if (item.factor === "3") {
+                    factorCount.three++;
                 }
             })
 
-            console.log(rankFactorList, filteredList, factorCount);
+            // 集計結果からグラフを描画
+            this.makeGraph(rank, factorCount)
+        }
 
+        makeGraph(rank, factorCount) {
+            // 集計したデータを元に、グラフに描画する。
             var ctx = document.getElementById(`myChart${rank}`).getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: ['★', '★★', '★★★'],
+                    labels: ['★(10%)', '★★(20%)', '★★★(70%)'],
                     datasets: [{
                         label: '因子比率',
                         data: [factorCount.one, factorCount.two, factorCount.three],
@@ -364,8 +380,10 @@
         });
 
         summariesCollection.display();
-        summariesCollection.test('A');
-        summariesCollection.test('B');
+        summariesCollection.displayGraph('A');
+        summariesCollection.displayGraph('B');
+        summariesCollection.displayGraph('SS');
+        summariesCollection.displayGraph('S');
     }
 
 

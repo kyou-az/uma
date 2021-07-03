@@ -8,21 +8,32 @@
 </body>
 <script>
 
- const slaimu = {
-   name: 'スライム',
-   hp: 3,
-   attack: function () {
-     // 攻撃ロジック
-   }
+ const array = [
+     {
+         name: 'ippei',
+         age: 39
+     },
+     {
+         name: 'hazime',
+         age: 22
+     },
+     {
+         name: 'satoshi',
+         age: 12
+     },
+     {
+         name: 'hage',
+         age: 56
+     },
+ ]
+
+ for (let i = 0; i < array.length; i++) {
+     console.log(array[i])
  }
 
- const hagure = {
-   name: 'はぐれメタル',
-   hp: 59,
-   attack: function () {
-     // にげる
-   }
- }
+ array.forEach(function (item) {
+     console.log(item)
+ })
 
 
 </script>
